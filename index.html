@@ -3,53 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Truckio — Control Operativo. Flotas en Marcha</title>
+  <title>FLEET by Walkia — Control Operativo y Mantenimiento de Flotas</title>
   
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="F_fleet-favicon.svg">
   
-  <!-- Google Fonts: Manrope e Inter -->
+  <!-- Google Fonts: Audiowide (Marca), Manrope (Títulos UI) e Inter (Cuerpo) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    /* VARIABLES DE MARCA (MANUAL DE IDENTIDAD TRUCKIO & WALKIA) */
+    /* ==========================================================================
+       VARIABLES DE MARCA — MANUAL DE IDENTIDAD FLEET BY WALKIA
+       ========================================================================== */
     :root {
-      --color-ink: #151035;       /* Fondo oscuro principal / Tipografía primaria */
-      --color-signal: #3D5AFE;    /* Acción, tecnología, botones CTA */
-      --color-trail: #12C9A0;     /* Continuidad, éxito, indicadores positivos */
-      --color-mist: #F1EFFA;      /* Fondos claros, descanso visual */
-      --color-white: #FFFFFF;
-      --color-ink-light: #231C4D;
-      --color-gray-border: #E2E8F0;
-      --color-gray-text: #64748B;
-      --color-warn: #F59E0B;
-      --color-danger: #EF4444;
+      --color-tech-black: #0B1320;    /* Negro tecnológico */
+      --color-tech-surface: #111C2E;  /* Superficie elevada oscura */
+      --color-tech-card: #162338;     /* Tarjetas sobre fondo oscuro */
+      --color-action-red: #E10600;    /* Rojo acción */
+      --color-action-red-hover: #B80500;
+      --color-neutral-gray: #E5E7EB;  /* Gris */
+      --color-pure-white: #FFFFFF;    /* Blanco */
       
+      --color-sem-green: #10B981;
+      --color-text-muted: #94A3B8;
+      --color-slate-text: #475569;
+
+      --font-brand: 'Audiowide', sans-serif;
       --font-title: 'Manrope', sans-serif;
       --font-body: 'Inter', sans-serif;
     }
 
-    /* RESET BASE */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+      background-color: #0B1320;
+    }
+
     body {
       font-family: var(--font-body);
-      background-color: var(--color-ink);
-      color: var(--color-mist);
+      background-color: var(--color-tech-black);
+      color: var(--color-neutral-gray);
       line-height: 1.6;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
     h1, h2, h3, h4 {
       font-family: var(--font-title);
       font-weight: 800;
-      color: var(--color-white);
+      color: var(--color-pure-white);
+    }
+
+    .brand-font {
+      font-family: var(--font-brand);
+      letter-spacing: 0.03em;
     }
 
     a {
@@ -57,35 +71,74 @@
       color: inherit;
     }
 
-    /* CONTENEDOR CENTRAL */
     .container {
-      max-width: 1200px;
+      max-width: 1220px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
-    /* HEADER & NAVEGACIÓN */
+    /* ==========================================================================
+       HEADER & NAVEGACIÓN (LOGO AMPLIADO)
+       ========================================================================== */
     header {
-      padding: 20px 0;
+      padding: 14px 0;
       position: sticky;
       top: 0;
-      background: rgba(21, 16, 53, 0.9);
-      backdrop-filter: blur(12px);
-      z-index: 100;
-      border-bottom: 1px solid rgba(241, 239, 250, 0.08);
+      background: rgba(11, 19, 32, 0.94);
+      backdrop-filter: blur(14px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(229, 231, 235, 0.08);
     }
 
     .nav-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 20px;
     }
 
-    .brand-logo {
-      height: 40px;
-      width: auto;
+    .brand-wrapper {
       display: flex;
       align-items: center;
+      gap: 14px;
+    }
+
+    /* Logo del encabezado más grande y protagonista */
+    .brand-logo-img {
+      height: 68px;
+      width: auto;
+      display: block;
+      transition: transform 0.2s ease;
+    }
+
+    .brand-logo-img:hover {
+      transform: scale(1.02);
+    }
+
+    .brand-fallback {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-fallback-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .brand-fallback-title {
+      font-family: var(--font-brand);
+      font-size: 1.85rem;
+      color: var(--color-pure-white);
+      letter-spacing: 0.04em;
+    }
+
+    .brand-fallback-sub {
+      font-family: var(--font-brand);
+      font-size: 0.85rem;
+      color: var(--color-action-red);
+      margin-top: 3px;
     }
 
     .nav-links {
@@ -97,93 +150,111 @@
 
     .nav-link {
       font-weight: 500;
-      font-size: 0.95rem;
-      color: var(--color-mist);
+      font-size: 0.94rem;
+      color: var(--color-neutral-gray);
       transition: color 0.2s ease;
     }
 
     .nav-link:hover {
-      color: var(--color-trail);
+      color: var(--color-action-red);
     }
 
-    /* BOTONES */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 28px;
+      gap: 8px;
+      padding: 12px 26px;
       border-radius: 8px;
       font-family: var(--font-title);
       font-weight: 700;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       transition: all 0.25s ease;
       cursor: pointer;
       border: none;
     }
 
     .btn-primary {
-      background-color: var(--color-signal);
-      color: var(--color-white);
-      box-shadow: 0 4px 14px rgba(61, 90, 254, 0.4);
+      background-color: var(--color-action-red);
+      color: var(--color-pure-white);
+      box-shadow: 0 4px 16px rgba(225, 6, 0, 0.35);
     }
 
     .btn-primary:hover {
-      background-color: #2D48E0;
+      background-color: var(--color-action-red-hover);
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(61, 90, 254, 0.5);
+      box-shadow: 0 8px 24px rgba(225, 6, 0, 0.5);
     }
 
     .btn-secondary {
-      background-color: rgba(241, 239, 250, 0.1);
-      color: var(--color-white);
-      border: 1px solid rgba(241, 239, 250, 0.2);
+      background-color: rgba(255, 255, 255, 0.06);
+      color: var(--color-pure-white);
+      border: 1px solid rgba(229, 231, 235, 0.2);
     }
 
     .btn-secondary:hover {
-      background-color: rgba(241, 239, 250, 0.2);
+      background-color: rgba(255, 255, 255, 0.14);
+      border-color: var(--color-pure-white);
     }
 
-    /* HERO SECTION */
+    /* ==========================================================================
+       HERO SECTION & BANNER CARRUSEL DE CAPTURAS (CADA 3 SEGUNDOS)
+       ========================================================================== */
     .hero {
-      padding: 90px 0 70px;
+      padding: 68px 0 90px;
+      position: relative;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(225, 6, 0, 0.16) 0%, transparent 58%),
+        linear-gradient(180deg, #0B1320 0%, #080E18 100%);
+    }
+
+    .hero-header {
       text-align: center;
       position: relative;
+      z-index: 2;
     }
 
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       padding: 6px 16px;
-      background: rgba(18, 201, 160, 0.12);
-      border: 1px solid rgba(18, 201, 160, 0.3);
-      border-radius: 30px;
-      color: var(--color-trail);
+      background: rgba(225, 6, 0, 0.12);
+      border: 1px solid rgba(225, 6, 0, 0.4);
+      border-radius: 999px;
+      color: var(--color-pure-white);
       font-weight: 600;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       margin-bottom: 24px;
     }
 
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--color-action-red);
+      box-shadow: 0 0 8px var(--color-action-red);
+    }
+
     .hero-title {
-      font-size: 3.5rem;
-      line-height: 1.15;
+      font-size: 3.3rem;
+      line-height: 1.12;
       letter-spacing: -0.02em;
-      margin-bottom: 24px;
-      max-width: 900px;
+      margin-bottom: 22px;
+      max-width: 920px;
       margin-left: auto;
       margin-right: auto;
     }
 
-    .hero-title span {
-      background: linear-gradient(135deg, var(--color-signal), var(--color-trail));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .hero-title .highlight {
+      color: var(--color-action-red);
+      display: inline-block;
     }
 
     .hero-subtitle {
-      font-size: 1.2rem;
-      color: rgba(241, 239, 250, 0.75);
-      max-width: 680px;
+      font-size: 1.15rem;
+      color: #CBD5E1;
+      max-width: 710px;
       margin: 0 auto 36px;
     }
 
@@ -191,159 +262,288 @@
       display: flex;
       gap: 16px;
       justify-content: center;
-      margin-bottom: 60px;
+      margin-bottom: 52px;
     }
 
-    /* SIMULADOR DE APP EN VIVO (MOCKUP) */
-    .app-preview {
-      background-color: var(--color-mist);
-      border-radius: 16px;
-      padding: 24px;
-      color: var(--color-ink);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      text-align: left;
+    /* ==========================================================================
+       BANNER DESLIZANTE DE CAPTURAS DE PANTALLA
+       ========================================================================== */
+    .screenshots-wrapper {
+      position: relative;
+      z-index: 2;
+      max-width: 1120px;
+      margin: 0 auto;
     }
 
-    .preview-header {
+    .screenshots-tabs {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .shot-tab-btn {
+      background: var(--color-tech-surface);
+      border: 1px solid rgba(229, 231, 235, 0.15);
+      color: var(--color-neutral-gray);
+      font-family: var(--font-title);
+      font-size: 0.86rem;
+      font-weight: 700;
+      padding: 9px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
       align-items: center;
-      padding-bottom: 16px;
-      margin-bottom: 20px;
-      border-bottom: 1px solid #E2E8F0;
-    }
-
-    .preview-dots {
-      display: flex;
       gap: 8px;
+      transition: all 0.25s ease;
     }
 
-    .dot {
-      width: 12px;
-      height: 12px;
+    .shot-tab-btn:hover {
+      border-color: rgba(225, 6, 0, 0.6);
+      color: var(--color-pure-white);
+    }
+
+    .shot-tab-btn.active {
+      background-color: var(--color-action-red);
+      border-color: var(--color-action-red);
+      color: var(--color-pure-white);
+      box-shadow: 0 4px 16px rgba(225, 6, 0, 0.4);
+    }
+
+    /* Contenedor ventana */
+    .browser-frame {
+      background-color: var(--color-tech-surface);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(229, 231, 235, 0.18);
+      box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.85);
+      position: relative;
+    }
+
+    .browser-bar {
+      background-color: #080E18;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(229, 231, 235, 0.08);
+    }
+
+    .browser-dots {
+      display: flex;
+      gap: 7px;
+    }
+
+    .b-dot {
+      width: 11px;
+      height: 11px;
       border-radius: 50%;
     }
-    .dot-red { background-color: #FF5F56; }
-    .dot-yellow { background-color: #FFBD2E; }
-    .dot-green { background-color: #27C93F; }
+    .b-dot.red { background: #EF4444; }
+    .b-dot.yellow { background: #F59E0B; }
+    .b-dot.green { background: #10B981; }
 
-    .preview-metrics {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-
-    .metric-card {
-      background-color: var(--color-white);
-      padding: 16px;
-      border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
-    }
-
-    .metric-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--color-gray-text);
-      text-transform: uppercase;
-    }
-
-    .metric-value {
-      font-size: 1.8rem;
-      font-family: var(--font-title);
-      font-weight: 800;
-      color: var(--color-ink);
-      margin: 4px 0;
-    }
-
-    .metric-sub {
-      font-size: 0.8rem;
-      color: var(--color-trail);
+    .browser-caption {
+      font-size: 0.82rem;
       font-weight: 600;
+      color: var(--color-pure-white);
     }
 
-    /* TABLA FICTICIA */
-    .fleet-table {
+    /* Barra de progreso del slider (3 segundos) */
+    .slider-progress-track {
       width: 100%;
-      border-collapse: collapse;
-      background: var(--color-white);
-      border-radius: 10px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.08);
       overflow: hidden;
     }
 
-    .fleet-table th {
-      background: #F8FAFC;
-      text-align: left;
-      padding: 12px 16px;
-      font-size: 0.8rem;
-      color: var(--color-gray-text);
-      text-transform: uppercase;
+    .slider-progress-bar {
+      height: 100%;
+      width: 0%;
+      background-color: var(--color-action-red);
     }
 
-    .fleet-table td {
-      padding: 14px 16px;
-      border-top: 1px solid #F1F5F9;
-      font-size: 0.9rem;
+    /* Carrusel deslizante (Track horizontal) */
+    .carousel-viewport {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background-color: #0B1320;
     }
 
-    .plate-tag {
-      background: var(--color-ink);
-      color: var(--color-white);
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-family: monospace;
-      font-weight: 700;
-      letter-spacing: 1px;
+    .carousel-track {
+      display: flex;
+      width: 100%;
+      transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
-    .status-pill {
+    .carousel-slide {
+      flex: 0 0 100%;
+      width: 100%;
+      position: relative;
+    }
+
+    .real-screenshot {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* Placeholder limpio si aún falta alguna imagen en la carpeta */
+    .shot-placeholder {
+      display: none;
+      padding: 110px 24px;
+      text-align: center;
+      background: linear-gradient(135deg, #111C2E 0%, #0B1320 100%);
+      color: var(--color-neutral-gray);
+    }
+
+    .shot-placeholder code {
       display: inline-block;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 700;
+      background: rgba(225, 6, 0, 0.15);
+      border: 1px solid rgba(225, 6, 0, 0.4);
+      color: #FCA5A5;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      margin-top: 10px;
     }
 
-    .status-ok { background: #E6F4EA; color: #137333; }
-    .status-warn { background: #FEF7E0; color: #B06000; }
+    /* Flechas laterales del banner */
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(11, 19, 32, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      color: var(--color-pure-white);
+      font-size: 1.35rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.2s ease;
+    }
 
-    /* SECCIÓN DE DOLOR VS SOLUCIÓN */
+    .carousel-arrow:hover {
+      background: var(--color-action-red);
+      border-color: var(--color-action-red);
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .carousel-arrow.prev { left: 16px; }
+    .carousel-arrow.next { right: 16px; }
+
+    /* Pie del banner con descripción dinámica e indicadores */
+    .shot-description-bar {
+      background-color: var(--color-tech-surface);
+      padding: 16px 24px;
+      border-top: 1px solid rgba(229, 231, 235, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .shot-description-bar p {
+      font-size: 0.9rem;
+      color: var(--color-neutral-gray);
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .carousel-dots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .c-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(229, 231, 235, 0.25);
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .c-dot.active {
+      width: 26px;
+      background: var(--color-action-red);
+    }
+
+    /* ==========================================================================
+       SECCIÓN: COMPARATIVA DOLOR VS SOLUCIÓN
+       ========================================================================== */
     .comparison-section {
-      padding: 90px 0;
-      background: var(--color-ink-light);
+      padding: 96px 0;
+      background-color: var(--color-tech-surface);
+      border-top: 1px solid rgba(229, 231, 235, 0.06);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.06);
+    }
+
+    .section-eyebrow {
+      display: block;
+      text-align: center;
+      font-family: var(--font-brand);
+      font-size: 0.78rem;
+      color: var(--color-action-red);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 10px;
     }
 
     .section-title {
       text-align: center;
-      font-size: 2.2rem;
-      margin-bottom: 50px;
+      font-size: 2.35rem;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-desc {
+      text-align: center;
+      color: var(--color-text-muted);
+      max-width: 650px;
+      margin: 0 auto 54px;
+      font-size: 1.02rem;
     }
 
     .comparison-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 32px;
+      gap: 28px;
     }
 
     .comp-card {
-      padding: 36px;
+      padding: 38px;
       border-radius: 16px;
     }
 
     .comp-card.before {
-      background: rgba(239, 68, 68, 0.05);
-      border: 1px solid rgba(239, 68, 68, 0.2);
+      background: rgba(11, 19, 32, 0.7);
+      border: 1px solid rgba(225, 6, 0, 0.3);
     }
 
     .comp-card.after {
-      background: rgba(18, 201, 160, 0.05);
-      border: 1px solid rgba(18, 201, 160, 0.3);
+      background: linear-gradient(145deg, rgba(22, 35, 56, 0.95), rgba(11, 19, 32, 0.95));
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
     }
 
     .comp-card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 20px;
+      font-size: 1.35rem;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .comp-list {
@@ -351,85 +551,193 @@
     }
 
     .comp-list li {
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       display: flex;
       gap: 12px;
       align-items: flex-start;
-      font-size: 0.95rem;
+      font-size: 0.96rem;
+      color: var(--color-neutral-gray);
     }
 
-    /* SECCIÓN CARACTERÍSTICAS */
+    /* ==========================================================================
+       SECCIÓN: MÓDULOS ESPECIALIZADOS
+       ========================================================================== */
     .features-section {
-      padding: 90px 0;
+      padding: 96px 0;
     }
 
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 24px;
     }
 
     .feature-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      padding: 28px;
-      transition: transform 0.2s ease;
+      background: var(--color-tech-surface);
+      border: 1px solid rgba(229, 231, 235, 0.08);
+      border-radius: 14px;
+      padding: 30px;
+      transition: all 0.25s ease;
     }
 
     .feature-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--color-signal);
+      transform: translateY(-5px);
+      border-color: var(--color-action-red);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4);
     }
 
     .feature-icon {
       width: 48px;
       height: 48px;
       border-radius: 10px;
-      background: rgba(61, 90, 254, 0.15);
+      background: rgba(225, 6, 0, 0.12);
+      border: 1px solid rgba(225, 6, 0, 0.28);
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 20px;
-      color: var(--color-signal);
-      font-weight: bold;
+      color: var(--color-action-red);
+      font-size: 1.35rem;
     }
 
-    /* SECCIÓN CAPTACIÓN DE LEADS / FORMULARIO */
+    .feature-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      color: var(--color-text-muted);
+      font-size: 0.92rem;
+    }
+
+    /* ==========================================================================
+       SECCIÓN: ECOSISTEMA DE ROLES & MODO OFFLINE-FIRST
+       ========================================================================== */
+    .roles-section {
+      padding: 96px 0;
+      background-color: var(--color-tech-surface);
+      border-top: 1px solid rgba(229, 231, 235, 0.06);
+    }
+
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .role-card {
+      background: var(--color-tech-black);
+      border: 1px solid rgba(229, 231, 235, 0.1);
+      border-radius: 14px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .role-tag {
+      display: inline-block;
+      font-family: var(--font-brand);
+      font-size: 0.72rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(225, 6, 0, 0.15);
+      color: var(--color-action-red);
+      margin-bottom: 14px;
+      width: fit-content;
+    }
+
+    .role-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+    }
+
+    .role-card p {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      margin-bottom: 20px;
+    }
+
+    .role-perms {
+      list-style: none;
+      border-top: 1px solid rgba(229, 231, 235, 0.08);
+      padding-top: 16px;
+      font-size: 0.85rem;
+      color: var(--color-neutral-gray);
+    }
+
+    .role-perms li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .offline-banner {
+      background: linear-gradient(90deg, #0B1320 0%, #192438 100%);
+      border: 1px solid rgba(225, 6, 0, 0.35);
+      border-left: 5px solid var(--color-action-red);
+      border-radius: 12px;
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .offline-info h4 {
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .offline-info p {
+      font-size: 0.92rem;
+      color: var(--color-text-muted);
+      max-width: 740px;
+    }
+
+    /* ==========================================================================
+       SECCIÓN: CAPTACIÓN DE LEADS / FORMULARIO
+       ========================================================================== */
     .contact-section {
-      padding: 90px 0;
-      background: var(--color-ink-light);
-      border-top: 1px solid rgba(241, 239, 250, 0.08);
+      padding: 96px 0;
+      background: radial-gradient(circle at 50% 100%, rgba(225, 6, 0, 0.12) 0%, transparent 60%);
     }
 
     .contact-card {
-      max-width: 640px;
+      max-width: 680px;
       margin: 0 auto;
-      background: var(--color-white);
+      background: var(--color-pure-white);
       border-radius: 16px;
-      padding: 40px;
-      color: var(--color-ink);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      padding: 44px;
+      color: var(--color-tech-black);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.55);
+      border-top: 5px solid var(--color-action-red);
     }
 
     .contact-card h2 {
-      color: var(--color-ink);
+      color: var(--color-tech-black);
       font-size: 2rem;
       margin-bottom: 8px;
       text-align: center;
     }
 
-    .contact-card p {
-      color: var(--color-gray-text);
+    .contact-card > p {
+      color: var(--color-slate-text);
       text-align: center;
-      font-size: 0.95rem;
+      font-size: 0.96rem;
       margin-bottom: 32px;
     }
 
     .lead-form {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
     }
 
     .form-group {
@@ -439,30 +747,30 @@
     }
 
     .form-group label {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 700;
-      color: var(--color-ink);
+      color: var(--color-tech-black);
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.04em;
     }
 
     .form-control {
       width: 100%;
-      padding: 14px 16px;
-      border: 1px solid var(--color-gray-border);
+      padding: 13px 15px;
+      border: 1px solid #CBD5E1;
       border-radius: 8px;
       font-family: var(--font-body);
       font-size: 0.95rem;
-      color: var(--color-ink);
+      color: var(--color-tech-black);
       background-color: #F8FAFC;
       transition: all 0.2s ease;
     }
 
     .form-control:focus {
       outline: none;
-      border-color: var(--color-signal);
-      background-color: var(--color-white);
-      box-shadow: 0 0 0 3px rgba(61, 90, 254, 0.15);
+      border-color: var(--color-action-red);
+      background-color: var(--color-pure-white);
+      box-shadow: 0 0 0 3px rgba(225, 6, 0, 0.14);
     }
 
     .form-row {
@@ -471,12 +779,14 @@
       gap: 16px;
     }
 
-    /* BANNER RESPALDO WALKIA STUDIO */
+    /* ==========================================================================
+       BANNER WALKIA ESTUDIO & FOOTER
+       ========================================================================== */
     .walkia-banner {
-      background: linear-gradient(135deg, #1A1442, #0E0A24);
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 50px 0;
+      background-color: #070C14;
+      border-top: 1px solid rgba(229, 231, 235, 0.08);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.08);
+      padding: 56px 0;
       text-align: center;
     }
 
@@ -487,226 +797,395 @@
       gap: 16px;
     }
 
-    .walkia-logo {
-      height: 36px;
-      width: auto;
-    }
-
     .walkia-text {
-      color: rgba(241, 239, 250, 0.7);
-      max-width: 600px;
+      color: var(--color-text-muted);
+      max-width: 620px;
       font-size: 0.95rem;
     }
 
-    /* FOOTER */
     footer {
-      padding: 40px 0;
+      padding: 36px 0;
       text-align: center;
       font-size: 0.85rem;
-      color: rgba(241, 239, 250, 0.5);
+      color: #64748B;
+      background-color: #050910;
     }
 
     /* RESPONSIVE */
+    @media (max-width: 960px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .roles-grid { grid-template-columns: 1fr; }
+    }
+
     @media (max-width: 768px) {
-      .hero-title { font-size: 2.2rem; }
+      .brand-logo-img { height: 52px; }
+      .hero-title { font-size: 2.25rem; }
+      .nav-links { display: none; }
       .comparison-grid { grid-template-columns: 1fr; }
       .hero-cta { flex-direction: column; }
-      .fleet-table th:nth-child(3), .fleet-table td:nth-child(3) { display: none; }
+      .features-grid { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
-      .contact-card { padding: 24px; }
+      .contact-card { padding: 28px 20px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
+  <!-- ========================================================================
+       HEADER CON LOGO AMPLIADO
+       ======================================================================== -->
   <header>
     <div class="container nav-container">
-      <a href="#">
-        <img src="truckio-logo-eslogan-transparente.svg" alt="Truckio" class="brand-logo" style="height: 100px; width: auto;" onerror="this.onerror=null; this.parentNode.innerHTML='<span style=\'font-family:Manrope; font-weight:800; font-size:1.5rem; color:#fff;\'>Truck<span style=\'color:#12C9A0;\'>io</span></span>'">
+      <a href="#" class="brand-wrapper" aria-label="FLEET by Walkia">
+        <img src="F_fleet-logo-mono-claro.svg" alt="FLEET by Walkia" class="brand-logo-img"
+             onload="document.getElementById('header-brand-fallback').style.display='none';"
+             onerror="this.style.display='none';">
+        
+        <div id="header-brand-fallback" class="brand-fallback">
+          <svg width="46" height="46" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="34" stroke="#E5E7EB" stroke-width="7"/>
+            <polygon points="50,4 58,20 42,20" fill="#E5E7EB"/>
+            <polygon points="50,96 58,80 42,80" fill="#E5E7EB"/>
+            <polygon points="4,50 20,42 20,58" fill="#E5E7EB"/>
+            <polygon points="96,50 80,42 80,58" fill="#E5E7EB"/>
+            <path d="M22 78 L46 44 L58 58 L82 22 L62 34 L50 24 L36 46 L28 34 L20 34 L32 54 Z" fill="#E10600"/>
+          </svg>
+          <div class="brand-fallback-text">
+            <span class="brand-fallback-title">FLEET</span>
+            <span class="brand-fallback-sub">by Walkia</span>
+          </div>
+        </div>
       </a>
+
       <ul class="nav-links">
-        <li><a href="#solucion" class="nav-link">Solución</a></li>
+        <li><a href="#plataforma" class="nav-link">Capturas</a></li>
+        <li><a href="#solucion" class="nav-link">Soluciones</a></li>
         <li><a href="#modulos" class="nav-link">Módulos</a></li>
-        <li><a href="#walkia" class="nav-link">Desarrollador</a></li>
+        <li><a href="#roles" class="nav-link">Roles & Offline</a></li>
       </ul>
-      <a href="#contacto" class="btn btn-primary">Conocé más de Truckio</a>
+
+      <a href="#contacto" class="btn btn-primary">Solicitar Demo</a>
     </div>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
+  <!-- ========================================================================
+       HERO SECTION + BANNER CARRUSEL AUTOMÁTICO (3 SEGUNDOS)
+       ======================================================================== -->
+  <section class="hero" id="plataforma">
     <div class="container">
-      <div class="hero-badge">
-        <span>● Control Operativo en Tiempo Real</span>
-      </div>
-      <h1 class="hero-title">
-        Gestión Inteligente de Flotas. <span>Cero Sorpresas en Ruta.</span>
-      </h1>
-      <p class="hero-subtitle">
-        Elimina el caos de planillas sueltas. Truckio centraliza despachos, semáforos de salud operativa e incidencias técnicas en una sola plataforma técnica.
-      </p>
-      <div class="hero-cta">
-        <a href="#contacto" class="btn btn-primary">Quiero conocer Truckio</a>
-        <a href="#solucion" class="btn btn-secondary">Qué soluciona Truckio</a>
-      </div>
-
-      <!-- MOCKUP VIVO APP -->
-      <div class="app-preview">
-        <div class="preview-header">
-          <div class="preview-dots">
-            <span class="dot dot-red"></span>
-            <span class="dot dot-yellow"></span>
-            <span class="dot dot-green"></span>
-          </div>
-          <span style="font-size: 0.8rem; color: #64748B; font-weight: 600;">Panel Operativo — Truckio v2.4</span>
+      <div class="hero-header">
+        <div class="hero-badge">
+          <span class="pulse-dot"></span>
+          <span>PWA Operativa • Control Preventivo y Trazabilidad en Ruta</span>
         </div>
 
-        <div class="preview-metrics">
-          <div class="metric-card">
-            <span class="metric-label">Unidades en Regla</span>
-            <div class="metric-value" style="color: #12C9A0;">2</div>
-            <span class="metric-sub">● 100% Salud de Flota</span>
-          </div>
-          <div class="metric-card">
-            <span class="metric-label">En Alerta / Umbral</span>
-            <div class="metric-value" style="color: #F59E0B;">1</div>
-            <span class="metric-sub" style="color: #F59E0B;">▲ Próximo a Service</span>
-          </div>
-          <div class="metric-card">
-            <span class="metric-label">En Taller / Parados</span>
-            <div class="metric-value" style="color: #EF4444;">0</div>
-            <span class="metric-sub" style="color: #64748B;">Sin varadas críticas</span>
-          </div>
+        <h1 class="hero-title">
+          Control Total de Flotas. <br>
+          <span class="highlight">Cero Sorpresas en Ruta.</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          <strong>FLEET by Walkia</strong> centraliza el semáforo de salud preventiva, los despachos en tiempo real y el ciclo de incidencias técnicas en una plataforma diseñada para empresas de transporte exigentes.
+        </p>
+
+        <div class="hero-cta">
+          <a href="#contacto" class="btn btn-primary">Conocé FLEET by Walkia</a>
+          <a href="#modulos" class="btn btn-secondary">Explorar Módulos</a>
+        </div>
+      </div>
+
+      <!-- BANNER DE CAPTURAS DESLIZANTE CADA 3 SEGUNDOS -->
+      <div class="screenshots-wrapper" id="carousel-container">
+        <!-- Botones selectores de pantalla -->
+        <div class="screenshots-tabs" role="tablist">
+          <button class="shot-tab-btn active" onclick="goToSlide(0)">🚦 Semáforo de Flota</button>
+          <button class="shot-tab-btn" onclick="goToSlide(1)">📍 Despacho y Rutas</button>
+          <button class="shot-tab-btn" onclick="goToSlide(2)">🔧 Ciclo de Incidencias</button>
+          <button class="shot-tab-btn" onclick="goToSlide(3)">🚛 Vehículos & Dossier</button>
+          <button class="shot-tab-btn" onclick="goToSlide(4)">👥 Gestión de Personal</button>
         </div>
 
-        <!-- TABLA CON PATENTES FICTICIAS Y EQUIPO CORREGIDO -->
-        <table class="fleet-table">
-          <thead>
-            <tr>
-              <th>Patente Ficticia</th>
-              <th>Unidad / Modelo</th>
-              <th>Kilometraje</th>
-              <th>Estado Operativo</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="plate-tag">AA 123 BT</span></td>
-              <td>Scania R450 (Tractor)</td>
-              <td>284.150 km</td>
-              <td><span class="status-pill status-ok">● Operativo</span></td>
-            </tr>
-            <tr>
-              <td><span class="plate-tag">AB 456 CY</span></td>
-              <td>Mercedes-Benz Actros (Tractor)</td>
-              <td>412.900 km</td>
-              <td><span class="status-pill status-ok">● Operativo</span></td>
-            </tr>
-            <tr>
-              <td><span class="plate-tag">AC 789 ZZ</span></td>
-              <td>Bonano Semirremolque (Remolque)</td>
-              <td>530.000 km</td>
-              <td><span class="status-pill status-warn">▲ Preventivo Pendiente</span></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="browser-frame">
+          <div class="browser-bar">
+            <div class="browser-dots">
+              <span class="b-dot red"></span>
+              <span class="b-dot yellow"></span>
+              <span class="b-dot green"></span>
+            </div>
+            <span class="browser-caption" id="shot-window-title">Vista Ejecutiva — Semáforo Preventivo</span>
+            <span style="font-size: 0.75rem; color: #10B981; font-weight: 700;">● PWA Online</span>
+          </div>
+
+          <!-- Barra de progreso de 3 segundos -->
+          <div class="slider-progress-track">
+            <div class="slider-progress-bar" id="slider-progress"></div>
+          </div>
+
+          <!-- Viewport deslizante -->
+          <div class="carousel-viewport">
+            <button class="carousel-arrow prev" onclick="moveSlide(-1)" aria-label="Anterior">‹</button>
+            <button class="carousel-arrow next" onclick="moveSlide(1)" aria-label="Siguiente">›</button>
+
+            <div class="carousel-track" id="carousel-track">
+              
+              <!-- SLIDE 1: SEMÁFORO -->
+              <div class="carousel-slide">
+                <img src="captura-semaforo.jpg" alt="Pantalla Semáforo de Flota en FLEET by Walkia" class="real-screenshot"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="shot-placeholder">
+                  <h4 style="margin-bottom:8px;">Captura 1: Semáforo de Flota</h4>
+                  <p>Guardá tu imagen modificada en esta carpeta con el nombre:</p>
+                  <code>captura-semaforo.jpg</code>
+                </div>
+              </div>
+
+              <!-- SLIDE 2: DESPACHO -->
+              <div class="carousel-slide">
+                <img src="captura-despacho.jpg" alt="Módulo de Despacho y Rutas en FLEET by Walkia" class="real-screenshot"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="shot-placeholder">
+                  <h4 style="margin-bottom:8px;">Captura 2: Módulo de Despacho y Rutas</h4>
+                  <p>Guardá tu imagen modificada en esta carpeta con el nombre:</p>
+                  <code>captura-despacho.jpg</code>
+                </div>
+              </div>
+
+              <!-- SLIDE 3: INCIDENCIAS -->
+              <div class="carousel-slide">
+                <img src="captura-incidencias.jpg" alt="Ciclo de Vida de Incidencias en FLEET by Walkia" class="real-screenshot"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="shot-placeholder">
+                  <h4 style="margin-bottom:8px;">Captura 3: Ciclo de Vida de Incidencias</h4>
+                  <p>Guardá tu imagen modificada en esta carpeta con el nombre:</p>
+                  <code>captura-incidencias.jpg</code>
+                </div>
+              </div>
+
+              <!-- SLIDE 4: VEHÍCULOS -->
+              <div class="carousel-slide">
+                <img src="captura-vehiculos.jpg" alt="Listado General de Vehículos en FLEET by Walkia" class="real-screenshot"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="shot-placeholder">
+                  <h4 style="margin-bottom:8px;">Captura 4: Listado General de Vehículos</h4>
+                  <p>Guardá tu imagen modificada en esta carpeta con el nombre:</p>
+                  <code>captura-vehiculos.jpg</code>
+                </div>
+              </div>
+
+              <!-- SLIDE 5: PERSONAL -->
+              <div class="carousel-slide">
+                <img src="captura-personal.jpg" alt="Gestión de Personal y Roles en FLEET by Walkia" class="real-screenshot"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="shot-placeholder">
+                  <h4 style="margin-bottom:8px;">Captura 5: Gestión de Personal</h4>
+                  <p>Guardá tu imagen modificada en esta carpeta con el nombre:</p>
+                  <code>captura-personal.jpg</code>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Pie descriptivo sincronizado con cada captura -->
+          <div class="shot-description-bar">
+            <p id="shot-description-text">
+              <strong>Semáforo de Salud de Flota:</strong> Visualización instantánea de unidades en regla (&gt;15%), en alerta (&le;15%) y críticas/paradas, con gráfico comparativo de margen operativo.
+            </p>
+            <div class="carousel-dots" id="carousel-dots">
+              <button class="c-dot active" onclick="goToSlide(0)" aria-label="Slide 1"></button>
+              <button class="c-dot" onclick="goToSlide(1)" aria-label="Slide 2"></button>
+              <button class="c-dot" onclick="goToSlide(2)" aria-label="Slide 3"></button>
+              <button class="c-dot" onclick="goToSlide(3)" aria-label="Slide 4"></button>
+              <button class="c-dot" onclick="goToSlide(4)" aria-label="Slide 5"></button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- COMPARATIVA DE DOLOR -->
+  <!-- ========================================================================
+       COMPARATIVA: DOLOR OPERATIVO VS CONTROL FLEET
+       ======================================================================== -->
   <section class="comparison-section" id="solucion">
     <div class="container">
-      <h2 class="section-title">Diseñado para Resolver los Dolores Reales del Transporte</h2>
+      <span class="section-eyebrow">De la reacción al control preventivo</span>
+      <h2 class="section-title">Diseñado para la Realidad del Transporte</h2>
+      <p class="section-desc">
+        Reemplazá las planillas desconectadas y los mensajes perdidos por un sistema auditado que anticipa fallas antes de que detengan un viaje.
+      </p>
+
       <div class="comparison-grid">
         <div class="comp-card before">
-          <h3 style="color: #EF4444;">Sin Truckio (El Caos Operativo)</h3>
+          <h3><span style="color:var(--color-action-red);">✕</span> Gestión Tradicional (Caos Operativo)</h3>
           <ul class="comp-list">
-            <li>❌ Roturas inesperadas en ruta por falta de seguimiento preventivo.</li>
-            <li>❌ Choferes reportando incidencias por WhatsApp que quedan en el olvido.</li>
-            <li>❌ Incertidumbre sobre el estado administrativo de cada patente.</li>
-            <li>❌ Hojas de despacho traspapeladas o con información incompleta.</li>
+            <li><span>❌</span><span><strong>Roturas inesperadas en ruta</strong> por vencimientos de aceite, filtros o frenos no detectados a tiempo.</span></li>
+            <li><span>❌</span><span><strong>Reportes informales por WhatsApp</strong> sin severidad, sin ubicación GPS y sin seguimiento de cierre.</span></li>
+            <li><span>❌</span><span><strong>Descontrol de costos de taller</strong> al no vincular cada reparación con su unidad y kilometraje exacto.</span></li>
+            <li><span>❌</span><span><strong>Riesgo de asignar unidades no aptas</strong> o con mantenimiento crítico vencido a un nuevo despacho.</span></li>
           </ul>
         </div>
+
         <div class="comp-card after">
-          <h3 style="color: #12C9A0;">Con Truckio (Control Absoluto)</h3>
+          <h3><span style="color:var(--color-sem-green);">✓</span> Con FLEET by Walkia (Precisión Técnica)</h3>
           <ul class="comp-list">
-            <li>✔ Semáforo visual de alerta antes de que la unidad entre en rango crítico.</li>
-            <li>✔ Registro estructurado de incidencias desde que entran hasta que salen del taller.</li>
-            <li>✔ Historial centralizado por unidad con accesibilidad inmediata.</li>
-            <li>✔ Control de despachos en tiempo real con trazabilidad de choferes.</li>
+            <li><span>✔</span><span><strong>Semáforo automático (Verde / Amarillo / Rojo)</strong> que alerta cuando queda &le;15% de margen preventivo.</span></li>
+            <li><span>✔</span><span><strong>Tablero Kanban de incidencias</strong> con fotos comprimidas, ubicación GPS, taller asignado y gasto en ARS.</span></li>
+            <li><span>✔</span><span><strong>Bloqueo inteligente en despachos:</strong> oculta unidades paradas, inactivas o ya asignadas a otro viaje.</span></li>
+            <li><span>✔</span><span><strong>Dossier técnico imprimible y Excel (.xlsx)</strong> listos para auditoría, seguros o transferencia de flota.</span></li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- MÓDULOS DEL SISTEMA -->
+  <!-- ========================================================================
+       MÓDULOS ESPECIALIZADOS
+       ======================================================================== -->
   <section class="features-section" id="modulos">
     <div class="container">
-      <h2 class="section-title">Módulos Especializados</h2>
+      <span class="section-eyebrow">Arquitectura Modular</span>
+      <h2 class="section-title">Cada Área de tu Operación Conectada</h2>
+      <p class="section-desc">
+        Seis módulos integrados bajo una misma lógica de datos aislados por empresa y trazabilidad histórica.
+      </p>
+
       <div class="features-grid">
         <div class="feature-card">
-          <div class="feature-icon">📊</div>
-          <h3>Semáforo de Salud</h3>
-          <p style="color: rgba(241, 239, 250, 0.7); font-size: 0.9rem; margin-top: 8px;">
-            Visualiza los márgenes operativos de tus unidades mediante un algoritmo de alerta temprana antes del fallo.
-          </p>
+          <div class="feature-icon">🚦</div>
+          <h3>Semáforo de Salud de Flota</h3>
+          <p>Calcula el margen operativo de cada unidad combinando lectura de odómetro y frecuencia de planes preventivos (por kilómetros o días).</p>
         </div>
+
         <div class="feature-card">
-          <div class="feature-icon">🚛</div>
+          <div class="feature-icon">📍</div>
           <h3>Despachos y Rutas</h3>
-          <p style="color: rgba(241, 239, 250, 0.7); font-size: 0.9rem; margin-top: 8px;">
-            Asigna orígenes, destinos, choferes y unidades. Monitorea estados: *En tránsito*, *Programado* o *Completado*.
-          </p>
+          <p>Asignación de tractor, remolque opcional y chofer con horarios estimados. Estados sincronizados: <em>Programado, En Tránsito, Demorado o Completado</em>.</p>
         </div>
+
         <div class="feature-card">
-          <div class="feature-icon">🛠</div>
-          <h3>Gestión de Incidencias</h3>
-          <p style="color: rgba(241, 239, 250, 0.7); font-size: 0.9rem; margin-top: 8px;">
-            Reportes en ruta derivados directamente al taller. Trazabilidad completa hasta el cierre definitivo del problema.
-          </p>
+          <div class="feature-icon">🔧</div>
+          <h3>Ciclo de Incidencias</h3>
+          <p>Flujo en 4 etapas desde el reporte en ruta hasta su cierre verificado. Distingue si la unidad <em>Sigue en Marcha</em> o quedó <em>Parada</em>.</p>
         </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3>Planes Preventivos</h3>
+          <p>Reglas configurables por unidad (ej. cambio de aceite cada 40.000 km o inspección anual de 365 días) con reinicio auditado al cumplir el service.</p>
+        </div>
+
         <div class="feature-card">
           <div class="feature-icon">📋</div>
-          <h3>Dossier de Vehículo</h3>
-          <p style="color: rgba(241, 239, 250, 0.7); font-size: 0.9rem; margin-top: 8px;">
-            Ficha técnica unificada con historial de mantenimientos, patentes, vtos. y especificaciones de flota.
-          </p>
+          <h3>Dossier & Reportes Ejecutivos</h3>
+          <p>Generación instantánea de resumen PDF de flota, ficha Dossier individual por vehículo y exportación completa a Excel (.xlsx) con costos por taller.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Seguridad & Multi-Empresa</h3>
+          <p>Aislamiento estricto de datos por organización, control de kilometraje anti-retroceso y trazabilidad individual por usuario autenticado.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SECCIÓN CAPTACIÓN DE LEADS / FORMULARIO DE CONTACTO -->
+  <!-- ========================================================================
+       ECOSISTEMA DE ROLES & OPERACIÓN OFFLINE-FIRST
+       ======================================================================== -->
+  <section class="roles-section" id="roles">
+    <div class="container">
+      <span class="section-eyebrow">Gobierno y Ejecución</span>
+      <h2 class="section-title">Tres Perfiles. Un Solo Flujo de Información.</h2>
+      <p class="section-desc">
+        Cada integrante de la empresa accede exactamente a las herramientas que necesita según su responsabilidad operativa.
+      </p>
+
+      <div class="roles-grid">
+        <div class="role-card">
+          <div>
+            <span class="role-tag">PERFIL 01 • GOBIERNO</span>
+            <h3>Administrador</h3>
+            <p>Control ejecutivo total de la empresa, gestión de altas de personal, configuración de unidades y supervisión de indicadores globales.</p>
+          </div>
+          <ul class="role-perms">
+            <li><span style="color:var(--color-action-red);">▸</span> Alta y gestión de roles de Gerentes y Choferes</li>
+            <li><span style="color:var(--color-action-red);">▸</span> Registro y habilitación de tractores y remolques</li>
+            <li><span style="color:var(--color-action-red);">▸</span> Auditoría de costos de taller y reportes PDF/Excel</li>
+          </ul>
+        </div>
+
+        <div class="role-card">
+          <div>
+            <span class="role-tag">PERFIL 02 • OPERACIÓN</span>
+            <h3>Gerente de Flota</h3>
+            <p>Convierte los datos en acción diaria: programa viajes, deriva fallas a taller, registra costos en ARS y mantiene los planes al día.</p>
+          </div>
+          <ul class="role-perms">
+            <li><span style="color:var(--color-action-red);">▸</span> Creación y monitoreo en vivo de despachos</li>
+            <li><span style="color:var(--color-action-red);">▸</span> Gestión del tablero Kanban de incidencias</li>
+            <li><span style="color:var(--color-action-red);">▸</span> Registro de services cumplidos y protocolos</li>
+          </ul>
+        </div>
+
+        <div class="role-card">
+          <div>
+            <span class="role-tag">PERFIL 03 • RUTA (MÓVIL)</span>
+            <h3>Chofer</h3>
+            <p>Interfaz móvil ágil e instalable en el teléfono para iniciar/finalizar viajes, actualizar odómetro y reportar fallas con fotos en segundos.</p>
+          </div>
+          <ul class="role-perms">
+            <li><span style="color:var(--color-action-red);">▸</span> Visualización directa de su unidad y ruta asignada</li>
+            <li><span style="color:var(--color-action-red);">▸</span> Carga diaria de kilometraje con validación</li>
+            <li><span style="color:var(--color-action-red);">▸</span> Reporte de incidencias con GPS y hasta 5 fotos</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="offline-banner">
+        <div class="offline-info">
+          <h4>
+            <span style="background:var(--color-action-red);color:#fff;font-size:0.72rem;padding:3px 8px;border-radius:4px;font-family:var(--font-brand);">OFFLINE-FIRST</span>
+            Operación en Ruta Incluso Sin Señal
+          </h4>
+          <p>
+            <strong>FLEET by Walkia</strong> funciona como Aplicación Web Progresiva (PWA) instalable en Android e iPhone. Si el chofer atraviesa una zona sin cobertura celular, puede registrar incidencias y actualizar el kilometraje localmente; la cola se sincroniza automáticamente apenas recupera conexión.
+          </p>
+        </div>
+        <a href="#contacto" class="btn btn-primary">Probar en mi Flota</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       FORMULARIO DE CONTACTO / CAPTACIÓN DE LEADS
+       ======================================================================== -->
   <section class="contact-section" id="contacto">
     <div class="container">
       <div class="contact-card">
-        <h2>Conocé más sobre Truckio</h2>
-        <p>Dejanos tus datos para coordinar una demo personalizada o habilitar tu acceso de prueba.</p>
+        <h2>Implementá <span class="brand-font" style="color:var(--color-action-red);">FLEET</span> en tu Empresa</h2>
+        <p>Dejanos tus datos para coordinar una demostración en vivo o solicitar la activación de tu cuenta corporativa.</p>
         
-        <!-- Para conectar con Formspree a costo $0: reemplaza 'TU_FORM_ID' por tu endpoint de Formspree -->
         <form class="lead-form" action="https://formspree.io/f/TU_FORM_ID" method="POST">
           <div class="form-row">
             <div class="form-group">
               <label for="nombre">Nombre Completo</label>
-              <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ej. Carlos Rodríguez" required>
+              <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ej. Martín Rodríguez" required>
             </div>
             <div class="form-group">
-              <label for="empresa">Empresa / Transporte</label>
-              <input type="text" id="empresa" name="empresa" class="form-control" placeholder="Ej. Transportes del Sur" required>
+              <label for="empresa">Empresa de Transporte</label>
+              <input type="text" id="empresa" name="empresa" class="form-control" placeholder="Ej. Logística del Sur S.A." required>
             </div>
           </div>
           
           <div class="form-row">
             <div class="form-group">
               <label for="email">Email Corporativo</label>
-              <input type="email" id="email" name="email" class="form-control" placeholder="carlos@transporte.com" required>
+              <input type="email" id="email" name="email" class="form-control" placeholder="contacto@empresa.com" required>
             </div>
             <div class="form-group">
               <label for="telefono">Teléfono / WhatsApp</label>
-              <input type="tel" id="telefono" name="telefono" class="form-control" placeholder="+54 9 11 1234-5678" required>
+              <input type="tel" id="telefono" name="telefono" class="form-control" placeholder="+54 9 11 0000-0000" required>
             </div>
           </div>
 
@@ -721,35 +1200,149 @@
           </div>
 
           <div class="form-group">
-            <label for="mensaje">Comentario o Consulta (Opcional)</label>
-            <textarea id="mensaje" name="mensaje" class="form-control" rows="3" placeholder="Contanos brevemente cómo gestionan la flota actualmente..."></textarea>
+            <label for="mensaje">Comentario o Necesidad Operativa (Opcional)</label>
+            <textarea id="mensaje" name="mensaje" class="form-control" rows="3" placeholder="Contanos brevemente cómo controlan hoy los mantenimientos y despachos..."></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px; font-size: 1rem; margin-top: 8px;">
-            Enviar Solicitud
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px; font-size: 1rem; margin-top: 6px;">
+            Solicitar Demo Personalizada
           </button>
         </form>
       </div>
     </div>
   </section>
 
-  <!-- SECCIÓN RESPALDO WALKIA STUDIO -->
+  <!-- ========================================================================
+       RESPALDO WALKIA ESTUDIO & FOOTER
+       ======================================================================== -->
   <section class="walkia-banner" id="walkia">
     <div class="container walkia-content">
-      <span style="font-size: 0.8rem; text-transform: uppercase; tracking: 2px; color: var(--color-trail); font-weight: 700;">Ingeniería & Software</span>
-      <img src="Walkia_Marca_Modo_Oscuro.png" alt="Walkia Estudio" class="walkia-logo" style="width: 180px;height: auto;" onerror="this.onerror=null; this.parentNode.innerHTML='<span style=\'font-family:Manrope; font-weight:800; font-size:1.4rem; color:#fff;\'>WALKIA ESTUDIO</span>'">
+      <span style="font-family:var(--font-brand); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--color-action-red);">Ingeniería & Arquitectura de Software</span>     
+      <img src="Walkia_Marca_Modo_Oscuro.png" alt="FLEET by Walkia" style="height: 100px; width: auto;"
+           onload="document.getElementById('footer-brand-fallback').style.display='none';"
+           onerror="this.style.display='none';">
+      
+      <div id="footer-brand-fallback" class="brand-font" style="font-size:1.75rem;color:#FFFFFF;">
+        FLEET <span style="color:#E10600;">by Walkia</span>
+      </div>
+
       <p class="walkia-text">
-        Truckio es un software concebido y desarrollado por <strong>Walkia Estudio</strong>. Construimos herramientas digitales de alto rendimiento orientadas a la eficiencia operativa y arquitectura de datos.
+        <strong>FLEET</strong> es una solución desarrollada por <strong>Walkia Estudio</strong>.<br>
+Diseñamos aplicaciones web progresivas de alto rendimiento enfocadas en trazabilidad, eficiencia operativa y control de datos en tiempo real.
       </p>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer id="footer">
+  <footer>
     <div class="container">
-      <p>© 2026 Truckio — Todos los derechos reservados. Desarrollado por Walkia.</p>
+      <p>© 2026 FLEET by Walkia — Todos los derechos reservados.</p>
     </div>
   </footer>
+
+  <!-- Script del Carrusel Automático cada 3 segundos -->
+  <script>
+    const slidesData = [
+      {
+        title: 'Vista Ejecutiva — Semáforo Preventivo',
+        desc: '<strong>Semáforo de Salud de Flota:</strong> Visualización instantánea de unidades en regla (&gt;15%), en alerta (&le;15%) y críticas/paradas, con gráfico comparativo de margen operativo.'
+      },
+      {
+        title: 'Operaciones — Módulo de Despacho y Rutas',
+        desc: '<strong>Módulo de Despacho y Rutas:</strong> Asignación de tractor, remolque y chofer con seguimiento de estados (Programado, En Tránsito, Completado) y horarios reales.'
+      },
+      {
+        title: 'Taller — Ciclo de Vida de Incidencias',
+        desc: '<strong>Ciclo de Vida de Incidencias:</strong> Tablero Kanban desde el reporte del chofer hasta revisión técnica, ingreso a taller, control de costos y cierre verificado.'
+      },
+      {
+        title: 'Flota — Listado General de Vehículos',
+        desc: '<strong>Listado General de Vehículos:</strong> Control de patentes, kilometraje auditado, estado de habilitación y generación de Dossier individual imprimible.'
+      },
+      {
+        title: 'Administración — Gestión de Personal',
+        desc: '<strong>Gestión de Personal:</strong> Administración de accesos diferenciados para Administrador, Gerente de Flota y Choferes con aislamiento por empresa.'
+      }
+    ];
+
+    let currentSlide = 0;
+    const totalSlides = slidesData.length;
+    const slideDuration = 3000; // 3 segundos
+    let autoPlayTimer = null;
+    let isPaused = false;
+
+    const track = document.getElementById('carousel-track');
+    const tabButtons = document.querySelectorAll('.shot-tab-btn');
+    const dotButtons = document.querySelectorAll('.c-dot');
+    const titleEl = document.getElementById('shot-window-title');
+    const descEl = document.getElementById('shot-description-text');
+    const progressEl = document.getElementById('slider-progress');
+    const carouselContainer = document.getElementById('carousel-container');
+
+    function restartProgressBar() {
+      progressEl.style.transition = 'none';
+      progressEl.style.width = '0%';
+      void progressEl.offsetWidth; // Fuerza reflujo CSS
+      if (!isPaused) {
+        progressEl.style.transition = `width ${slideDuration}ms linear`;
+        progressEl.style.width = '100%';
+      }
+    }
+
+    function updateCarousel() {
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+      tabButtons.forEach((btn, idx) => {
+        btn.classList.toggle('active', idx === currentSlide);
+      });
+
+      dotButtons.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentSlide);
+      });
+
+      titleEl.textContent = slidesData[currentSlide].title;
+      descEl.innerHTML = slidesData[currentSlide].desc;
+
+      restartProgressBar();
+    }
+
+    function goToSlide(index) {
+      currentSlide = (index + totalSlides) % totalSlides;
+      updateCarousel();
+      resetTimer();
+    }
+
+    function moveSlide(step) {
+      goToSlide(currentSlide + step);
+    }
+
+    function resetTimer() {
+      clearInterval(autoPlayTimer);
+      if (!isPaused) {
+        autoPlayTimer = setInterval(() => {
+          currentSlide = (currentSlide + 1) % totalSlides;
+          updateCarousel();
+        }, slideDuration);
+      }
+    }
+
+    // Pausar al pasar el mouse por encima para ver detalles
+    carouselContainer.addEventListener('mouseenter', () => {
+      isPaused = true;
+      clearInterval(autoPlayTimer);
+      progressEl.style.transition = 'none';
+      progressEl.style.width = '0%';
+    });
+
+    carouselContainer.addEventListener('mouseleave', () => {
+      isPaused = false;
+      restartProgressBar();
+      resetTimer();
+    });
+
+    // Iniciar carrusel al cargar
+    updateCarousel();
+    resetTimer();
+  </script>
 
 </body>
 </html>
