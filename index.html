@@ -103,7 +103,6 @@
       gap: 14px;
     }
 
-    /* Logo del encabezado más grande y protagonista */
     .brand-logo-img {
       height: 68px;
       width: auto;
@@ -184,6 +183,12 @@
       background-color: var(--color-action-red-hover);
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(225, 6, 0, 0.5);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
     }
 
     .btn-secondary {
@@ -311,7 +316,6 @@
       box-shadow: 0 4px 16px rgba(225, 6, 0, 0.4);
     }
 
-    /* Contenedor ventana */
     .browser-frame {
       background-color: var(--color-tech-surface);
       border-radius: 16px;
@@ -350,7 +354,6 @@
       color: var(--color-pure-white);
     }
 
-    /* Barra de progreso del slider (3 segundos) */
     .slider-progress-track {
       width: 100%;
       height: 3px;
@@ -364,7 +367,6 @@
       background-color: var(--color-action-red);
     }
 
-    /* Carrusel deslizante (Track horizontal) */
     .carousel-viewport {
       position: relative;
       width: 100%;
@@ -391,7 +393,6 @@
       object-fit: cover;
     }
 
-    /* Placeholder limpio si aún falta alguna imagen en la carpeta */
     .shot-placeholder {
       display: none;
       padding: 110px 24px;
@@ -411,7 +412,6 @@
       margin-top: 10px;
     }
 
-    /* Flechas laterales del banner */
     .carousel-arrow {
       position: absolute;
       top: 50%;
@@ -440,7 +440,6 @@
     .carousel-arrow.prev { left: 16px; }
     .carousel-arrow.next { right: 16px; }
 
-    /* Pie del banner con descripción dinámica e indicadores */
     .shot-description-bar {
       background-color: var(--color-tech-surface);
       padding: 16px 24px;
@@ -779,6 +778,30 @@
       gap: 16px;
     }
 
+    .form-feedback {
+      display: none;
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    .form-feedback.success {
+      display: block;
+      background-color: #ECFDF5;
+      color: #065F46;
+      border: 1px solid #10B981;
+    }
+
+    .form-feedback.error {
+      display: block;
+      background-color: #FEF2F2;
+      color: #991B1B;
+      border: 1px solid #EF4444;
+    }
+
     /* ==========================================================================
        BANNER WALKIA ESTUDIO & FOOTER
        ========================================================================== */
@@ -864,7 +887,7 @@
         <li><a href="#roles" class="nav-link">Roles & Offline</a></li>
       </ul>
 
-      <a href="#contacto" class="btn btn-primary">Solicitar Demo</a>
+      <a href="#contacto" class="btn btn-primary">Quiero saber más de Fleet</a>
     </div>
   </header>
 
@@ -896,7 +919,6 @@
 
       <!-- BANNER DE CAPTURAS DESLIZANTE CADA 3 SEGUNDOS -->
       <div class="screenshots-wrapper" id="carousel-container">
-        <!-- Botones selectores de pantalla -->
         <div class="screenshots-tabs" role="tablist">
           <button class="shot-tab-btn active" onclick="goToSlide(0)">🚦 Semáforo de Flota</button>
           <button class="shot-tab-btn" onclick="goToSlide(1)">📍 Despacho y Rutas</button>
@@ -916,19 +938,16 @@
             <span style="font-size: 0.75rem; color: #10B981; font-weight: 700;">● PWA Online</span>
           </div>
 
-          <!-- Barra de progreso de 3 segundos -->
           <div class="slider-progress-track">
             <div class="slider-progress-bar" id="slider-progress"></div>
           </div>
 
-          <!-- Viewport deslizante -->
           <div class="carousel-viewport">
             <button class="carousel-arrow prev" onclick="moveSlide(-1)" aria-label="Anterior">‹</button>
             <button class="carousel-arrow next" onclick="moveSlide(1)" aria-label="Siguiente">›</button>
 
             <div class="carousel-track" id="carousel-track">
               
-              <!-- SLIDE 1: SEMÁFORO -->
               <div class="carousel-slide">
                 <img src="captura-semaforo.jpg" alt="Pantalla Semáforo de Flota en FLEET by Walkia" class="real-screenshot"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
@@ -939,7 +958,6 @@
                 </div>
               </div>
 
-              <!-- SLIDE 2: DESPACHO -->
               <div class="carousel-slide">
                 <img src="captura-despacho.jpg" alt="Módulo de Despacho y Rutas en FLEET by Walkia" class="real-screenshot"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
@@ -950,7 +968,6 @@
                 </div>
               </div>
 
-              <!-- SLIDE 3: INCIDENCIAS -->
               <div class="carousel-slide">
                 <img src="captura-incidencias.jpg" alt="Ciclo de Vida de Incidencias en FLEET by Walkia" class="real-screenshot"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
@@ -961,7 +978,6 @@
                 </div>
               </div>
 
-              <!-- SLIDE 4: VEHÍCULOS -->
               <div class="carousel-slide">
                 <img src="captura-vehiculos.jpg" alt="Listado General de Vehículos en FLEET by Walkia" class="real-screenshot"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
@@ -972,7 +988,6 @@
                 </div>
               </div>
 
-              <!-- SLIDE 5: PERSONAL -->
               <div class="carousel-slide">
                 <img src="captura-personal.jpg" alt="Gestión de Personal y Roles en FLEET by Walkia" class="real-screenshot"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
@@ -986,7 +1001,6 @@
             </div>
           </div>
 
-          <!-- Pie descriptivo sincronizado con cada captura -->
           <div class="shot-description-bar">
             <p id="shot-description-text">
               <strong>Semáforo de Salud de Flota:</strong> Visualización instantánea de unidades en regla (&gt;15%), en alerta (&le;15%) y críticas/paradas, con gráfico comparativo de margen operativo.
@@ -1158,7 +1172,7 @@
   </section>
 
   <!-- ========================================================================
-       FORMULARIO DE CONTACTO / CAPTACIÓN DE LEADS
+       FORMULARIO DE CONTACTO / CAPTACIÓN DE LEADS (FORMSUBMIT AJAX -> CRM)
        ======================================================================== -->
   <section class="contact-section" id="contacto">
     <div class="container">
@@ -1166,47 +1180,49 @@
         <h2>Implementá <span class="brand-font" style="color:var(--color-action-red);">FLEET</span> en tu Empresa</h2>
         <p>Dejanos tus datos para coordinar una demostración en vivo o solicitar la activación de tu cuenta corporativa.</p>
         
-        <form class="lead-form" action="https://formspree.io/f/TU_FORM_ID" method="POST">
+        <form class="lead-form" id="fleet-lead-form">
           <div class="form-row">
             <div class="form-group">
               <label for="nombre">Nombre Completo</label>
-              <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ej. Martín Rodríguez" required>
+              <input type="text" id="nombre" name="Nombre" class="form-control" placeholder="Ej. Martín Rodríguez" required>
             </div>
             <div class="form-group">
               <label for="empresa">Empresa de Transporte</label>
-              <input type="text" id="empresa" name="empresa" class="form-control" placeholder="Ej. Logística del Sur S.A." required>
+              <input type="text" id="empresa" name="Empresa" class="form-control" placeholder="Ej. Logística del Sur S.A." required>
             </div>
           </div>
           
           <div class="form-row">
             <div class="form-group">
               <label for="email">Email Corporativo</label>
-              <input type="email" id="email" name="email" class="form-control" placeholder="contacto@empresa.com" required>
+              <input type="email" id="email" name="Email" class="form-control" placeholder="contacto@empresa.com" required>
             </div>
             <div class="form-group">
               <label for="telefono">Teléfono / WhatsApp</label>
-              <input type="tel" id="telefono" name="telefono" class="form-control" placeholder="+54 9 11 0000-0000" required>
+              <input type="tel" id="telefono" name="Telefono" class="form-control" placeholder="+54 9 11 0000-0000" required>
             </div>
           </div>
 
           <div class="form-group">
             <label for="unidades">Cantidad de Unidades en Flota</label>
-            <select id="unidades" name="unidades" class="form-control">
-              <option value="1-5">1 a 5 unidades</option>
-              <option value="6-15">6 a 15 unidades</option>
-              <option value="16-30">16 a 30 unidades</option>
-              <option value="+30">Más de 30 unidades</option>
+            <select id="unidades" name="Unidades" class="form-control">
+              <option value="1 a 5 unidades">1 a 5 unidades</option>
+              <option value="6 a 15 unidades">6 a 15 unidades</option>
+              <option value="16 a 30 unidades">16 a 30 unidades</option>
+              <option value="Más de 30 unidades">Más de 30 unidades</option>
             </select>
           </div>
 
           <div class="form-group">
             <label for="mensaje">Comentario o Necesidad Operativa (Opcional)</label>
-            <textarea id="mensaje" name="mensaje" class="form-control" rows="3" placeholder="Contanos brevemente cómo controlan hoy los mantenimientos y despachos..."></textarea>
+            <textarea id="mensaje" name="Mensaje" class="form-control" rows="3" placeholder="Contanos brevemente cómo controlan hoy los mantenimientos y despachos..."></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px; font-size: 1rem; margin-top: 6px;">
-            Solicitar Demo Personalizada
+          <button type="submit" id="submit-btn" class="btn btn-primary" style="width: 100%; padding: 16px; font-size: 1rem; margin-top: 6px;">
+            Quiero saber más de Fleet
           </button>
+
+          <div id="form-feedback" class="form-feedback"></div>
         </form>
       </div>
     </div>
@@ -1239,7 +1255,7 @@ Diseñamos aplicaciones web progresivas de alto rendimiento enfocadas en trazabi
     </div>
   </footer>
 
-  <!-- Script del Carrusel Automático cada 3 segundos -->
+  <!-- Script del Carrusel Automático y Envío a FormSubmit (CRM) -->
   <script>
     const slidesData = [
       {
@@ -1266,7 +1282,7 @@ Diseñamos aplicaciones web progresivas de alto rendimiento enfocadas en trazabi
 
     let currentSlide = 0;
     const totalSlides = slidesData.length;
-    const slideDuration = 3000; // 3 segundos
+    const slideDuration = 3000;
     let autoPlayTimer = null;
     let isPaused = false;
 
@@ -1281,7 +1297,7 @@ Diseñamos aplicaciones web progresivas de alto rendimiento enfocadas en trazabi
     function restartProgressBar() {
       progressEl.style.transition = 'none';
       progressEl.style.width = '0%';
-      void progressEl.offsetWidth; // Fuerza reflujo CSS
+      void progressEl.offsetWidth;
       if (!isPaused) {
         progressEl.style.transition = `width ${slideDuration}ms linear`;
         progressEl.style.width = '100%';
@@ -1325,7 +1341,6 @@ Diseñamos aplicaciones web progresivas de alto rendimiento enfocadas en trazabi
       }
     }
 
-    // Pausar al pasar el mouse por encima para ver detalles
     carouselContainer.addEventListener('mouseenter', () => {
       isPaused = true;
       clearInterval(autoPlayTimer);
@@ -1339,9 +1354,70 @@ Diseñamos aplicaciones web progresivas de alto rendimiento enfocadas en trazabi
       resetTimer();
     });
 
-    // Iniciar carrusel al cargar
     updateCarousel();
     resetTimer();
+
+    // ========================================================================
+    // ENVÍO EN SEGUNDO PLANO A FLEET@WALKIA.COM.AR (FORMATO ESTÁNDAR CRM)
+    // ========================================================================
+    document.getElementById('fleet-lead-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const submitBtn = document.getElementById('submit-btn');
+      const feedbackEl = document.getElementById('form-feedback');
+
+      const nombre = document.getElementById('nombre').value.trim();
+      const empresa = document.getElementById('empresa').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const telefono = document.getElementById('telefono').value.trim();
+      const unidades = document.getElementById('unidades').value;
+      const mensaje = document.getElementById('mensaje').value.trim() || 'Sin comentarios adicionales';
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando consulta...';
+      feedbackEl.className = 'form-feedback';
+      feedbackEl.style.display = 'none';
+
+      // Estructura de campos limpios para lectura directa por CRM
+      const payload = {
+        _subject: `Nuevo Lead Web FLEET - ${empresa} (${nombre})`,
+        _template: 'basic', // Formato texto/tabla estándar sin adornos que confundan al parser del CRM
+        _replyto: email,
+        _captcha: 'false',
+        Origen: 'Web Landing FLEET by Walkia',
+        Nombre: nombre,
+        Empresa: empresa,
+        Email: email,
+        Telefono: telefono,
+        Unidades: unidades,
+        Mensaje: mensaje
+      };
+
+      try {
+        const response = await fetch('https://formsubmit.co/ajax/fleet@walkia.com.ar', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+          feedbackEl.textContent = '¡Gracias! Recibimos tus datos. Un especialista de Walkia se pondrá en contacto a la brevedad.';
+          feedbackEl.classList.add('success');
+          this.reset();
+        } else {
+          throw new Error('Error en la respuesta del servidor');
+        }
+      } catch (error) {
+        feedbackEl.textContent = 'Hubo un inconveniente al enviar el formulario. Por favor escribinos directamente a fleet@walkia.com.ar.';
+        feedbackEl.classList.add('error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Quiero saber más de Fleet';
+      }
+    });
   </script>
 
 </body>
